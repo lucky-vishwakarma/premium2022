@@ -1,0 +1,73 @@
+    <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+      <div class="content">
+       <%= render 'billings/bill_search' %>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Billings</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">                                    
+                        <tr>
+                          <th>Booking</th>
+                          <th>Status</th>
+                          <th>Delivery Date</th>
+                          <th>Bill No.</th>
+                          <th>Phone</th>
+                          <th>Name</th>
+                          <th>Advance</th>
+                          <th>Due Amount</th>
+                          <th></th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>                                       
+                        <tbody>
+                          <% if @billings.present? %>
+                            <% @billings.each do |billing| %>
+                              <tr id="billing_<%= billing.id %>" class="<%= billing_cancel?(billing) %>">
+                                <td class="show_pg"><%= billing.booking_date.strftime("%d/%m/%Y") %></td>
+                                <td class="<%= billing.status %>"><%= billing.status.titleize %></td>
+                                <td class="show_pg"><%= billing.due_date.strftime("%d/%m/%Y") if billing.due_date.present? %></td>
+                                <td class="show_pg"><%= billing.bill_no %></td>
+                                <td class="show_pg"><%= billing.phone %></td>
+                                <td class="show_pg"><%= billing.name %></td> 
+                                <td class="show_pg"><%= billing.advance_amount %></td>  
+                                <td class="show_pg"><%= billing.get_total_final_amount %></td>                                
+                                <td><%= render 'status', status: get_status(billing.status), billing: billing, page: params[:page]   %></td>
+                                <td>
+                                  <%= link_to "View", billing_path(billing), class: "btn btn-primary btn-xs" %>
+                                  <% if current_user.admin? %>
+                                    <%= link_to "Edit", edit_billing_path(billing), class: "btn btn-primary btn-xs" %>
+                                    <%= link_to "Delete", billing_path(billing), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-xs" %>
+                                  <% end %>
+                                </td>
+                              </tr>
+                            <% end %>
+                          <% else %>
+                            <tr>
+                              <th colspan="6">No Record Found</th>
+                            </tr>
+                          <% end %>
+                        </tbody>  
+                    </table>
+                    <div class="digg_pagination">
+                      <% unless params[:q].present? %>
+                        <%= will_paginate @billing, :container => false %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <% if params[:q] && params[:q][:status_eq] %>
+                <div class="card-footer"><div class=" foo-ter">Total<span style="margin-left: 180px;">  &nbsp;&nbsp; &nbsp;&nbsp;Advance Amount:- <%= advance_sum(@billings)%> &nbsp;&nbsp; &nbsp;&nbsp; <%=  params[:q][:status_eq].titleize %> Amount:- &nbsp;&nbsp;&nbsp;&nbsp;<%= billing_sum(@billings, params[:q][:status_eq]) %>/-</span></div>
+                  
+                </div>
+                <% end %>
+              </div>
+            </div>         
+          </div>        
+      </div>
+    </div>

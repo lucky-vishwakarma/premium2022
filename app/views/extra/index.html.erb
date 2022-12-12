@@ -1,0 +1,173 @@
+    <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+      <div class="content">
+        <div class="container-fluid">
+        	<div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#items" data-toggle="tab">
+                            Items
+                            <div class="ripple-container"></div>
+                          </a> 
+                        </li>
+                        <li class="nav-item" style="margin-right: 50px;">
+                          <a class="nav-link" href="#new_item" data-toggle="tab">
+                            Add NEW
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="items">
+                      <table class="table">
+                        <tbody>
+                        <thead class="text-primary">
+	                      <th>ID</th>
+	                      <th>Name</th>
+	                      <th></th>
+	                      <th></th>
+	                    </thead>
+                        <% @items.each_with_index do |item, index| %>
+                          <tr>
+                          	<td><%= index + 1 %></td>
+                            <td><%= item.name %></td>
+                            <td class="td-actions text-right">
+                            </td>
+                          </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="new_item">
+                    	<div class="card-body">
+						    <%= form_for :item, url: create_item_extra_index_path, :html => {:class=> "form-inline"}, remote: true do |item| %>						  
+						        <div class="col-md-12">
+						          <div class="form-group">
+						            <label class="">Name</label>
+						            <%= item.text_field :name, required: true, class: "form-control wdth" %>
+						          </div>
+						        </div>
+						          
+						        <div class="col-md-12">
+						          <div class="form-group mr-20">
+						            <%= item.submit "Submit", class: "btn btn-primary" %>
+						          </div>
+						        </div>
+						   
+						    <% end %>
+						</div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+             <!--  <div class="row">
+                <div class="card"> -->
+               <!--  <div class="card-header card-header-warning">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">SMS                        
+                        </li>                    
+                      </ul>
+                    </div>
+                  </div>
+                </div> -->
+           <!--      <div class="card-body table-responsive">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="services">                       
+                    <table class="table table-hover">
+                      <thead class="text-warning">
+                        <th>SMS Balance </th>
+                        <th>Rs.<%#= @available_sms["amount"] %>/-</th>
+                      </thead>                   
+                    </table>
+                    </div>                                
+                  </div>
+                </div> -->
+           <!--    </div>
+              </div> -->
+              <div class="row">
+                <div class="card">
+                  <div class="card-header card-header-warning">
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#services" data-toggle="tab">
+                              Services
+                              <div class="ripple-container"></div>
+                            </a> 
+                          </li>
+                          <li class="nav-item" style="margin-right: 50px;">
+                            <a class="nav-link" href="#new_service" data-toggle="tab">
+                              Add NEW
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body table-responsive">
+                  	<div class="tab-content">
+                      <div class="tab-pane active" id="services">	                      
+  	                  <table class="table table-hover">
+  	                    <thead class="text-warning">
+  	                      <th>ID</th>
+  	                      <th>Name</th>
+  	                      <th></th>
+  	                      <th></th>
+  	                    </thead>
+  	                    <tbody>
+  	                    <% Service.all.each_with_index do |service, index| %>
+  	                      <tr>
+  	                      	<td><%= index + 1%></td>
+  	                        <td><%= service.name %></td>
+  	                        <td></td>
+  	                        <td></td>
+  	                      </tr>
+  	                      <% end %>
+  	                    </tbody>
+  	                  </table>
+                      </div>
+                      <div class="tab-pane" id="new_service">
+                      	<div class="card-body">
+          						    <%= form_for :service, url: create_service_extra_index_path, :html => {:class=> "form-inline"}, remote: true do |item| %>						  
+          						        <div class="col-md-12">
+          						          <div class="form-group">
+          						            <label class="">Name</label>
+          						            <%= item.text_field :name, required: true, class: "form-control wdth" %>
+          						          </div>
+          						        </div>
+          						          
+          						        <div class="col-md-12">
+          						          <div class="form-group mr-20">
+          						            <%= item.submit "Submit", class: "btn btn-warning" %>
+          						          </div>
+          						        </div>
+          						   
+          						    <% end %>
+  						          </div>
+                      </div>                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

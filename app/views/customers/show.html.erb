@@ -1,0 +1,69 @@
+    <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+      <div class="content">
+        <div class="container-fluid">
+        	<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Balances</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive  min-height-table">
+                    <table class="table">
+                      <thead class=" text-primary">                                    
+                        <tr>
+                          <!-- <th>ID</th> -->
+                          <th>Billing</th>
+                          <th>Due Amount</th>
+                          <th>Advance Amount</th>
+                          <th>status</th>
+                          <th>Adjust billing</th>
+                          <% if current_user.admin? %>
+                          <th>Action</th>
+                          <% end %>
+                        </tr>
+                      </thead>                                       
+                        <tbody>
+                          <% if @balances.present? %>
+                            <% @balances.each do |balance| %>
+                              <tr class="<%= get_bg_color_of_status(balance)%>">
+                                <!-- <td class="show_pg"><%#= balance.id %></td> -->
+                                <td class="show_pg"><%= balance.get_bill_number %> (<%= link_to "View", billing_path(balance.billing_id) %>)</td>
+                                <td class="show_pg"><%= balance.due_amount %></td>
+                                <td class="show_pg"><%= balance.advance_amount %></td>
+                                <td class="show_pg"><%= balance.status %></td>   
+                                <td class="show_pg"><%= balance.get_adjust_billing_number %></td>
+                                <% if current_user.admin? %> 
+                                <td class="show_pg">
+                                  <%= link_to "Delete", customer_path(balance.customer_id, balance_id: balance.id), method: :delete %>
+                                  <%= link_to "Clear","#" %>
+                                  </td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          <% else %>
+                            <tr>
+                              <th colspan="6">No Record Found</th>
+                            </tr>
+                          <% end %>
+                        </tbody>  
+                    </table>
+                    <div class="digg_pagination">
+                      <% unless params[:q].present? %>
+                        <%#= will_paginate @balances, :container => false %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                 <div class="card-footer"><div class=" foo-ter">Pending <span style="margin-left: 100px;">Due Amount - <%= @balances.pending.sum(:due_amount) %> &nbsp; &nbsp; &nbsp; &nbsp; Advance Amount - <%= @balances.pending.sum(:advance_amount) %> </span>
+                  <!-- <span style="float: right;">Advance Amount:- <%#= @attendances.sum(:advance_amount)%>/-</span></div> -->
+                </div>
+              </div>
+            </div>         
+          </div> 
+          
+        </div>
+      </div>
+    </div>
+

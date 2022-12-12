@@ -1,0 +1,42 @@
+    <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+      <%= render 'layouts/flash' %>
+      <div class="content">
+       <%= render 'customers/search' %>     
+        <div class="row">
+            <% @customers.each do |customer| %>
+              <div class="col-md-3">
+                <div class="card card-stats" id="<%= customer.id %>"> 
+
+                  <div class="card-header card-header-warning card-header-icon">
+                  <div class="form-check" style="float: left;">
+                        <!-- <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked>
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label> -->
+                      </div>                    
+                    <p class="card-category">                      
+                      <%= customer.name %></p>
+                    <h3 class="card-title"><%= customer.phone %></h3>
+                    <p class="card-category" style="margin-top: 30px;"></p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <a href="customers/<%= customer.id %>">View</a>
+                      <p style="margin-left: 90px;">Advance:- <span class="adv_amt"><%= customer.customer_balance_amount[0] %></span>&nbsp;&nbsp; &nbsp;&nbsp;Due:-  <span class="due_amt"> <%= customer.customer_balance_amount[1] %></span></p>
+                      <!-- <a href="#pablo" style="margin-left: 70px;">Order:- <%= customer.billings.count %></a>                -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>    
+          </div> 
+          <div class="digg_pagination">
+              <%= will_paginate @customers, :container => false %>
+            
+          </div>   
+      </div>
+    </div>
+   

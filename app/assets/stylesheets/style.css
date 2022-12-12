@@ -1,0 +1,166 @@
+/*pagination*/
+.digg_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */
+}
+.digg_pagination a, .digg_pagination span, .digg_pagination em {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1px;
+}
+.digg_pagination .disabled {
+  color: #999999;
+  border: 1px solid #dddddd;
+}
+.digg_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: #984eaf;
+  color: white;
+  border: 1px solid #984eaf;
+}
+.digg_pagination a {
+  text-decoration: none;
+  color: #984eaf;
+  border: 1px solid #9aafe5;
+}
+.digg_pagination a:hover, .digg_pagination a:focus {
+  color: #984eaf;
+  border-color: #984eaf;
+}
+.digg_pagination .page_info {
+  background: #984eaf;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+.digg_pagination .page_info b {
+  color: #000033;
+  background: #6aa6ed;
+  padding: 0.1em 0.25em;
+}
+.digg_pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html .digg_pagination {
+  height: 1%;
+}
+*:first-child+html .digg_pagination {
+  overflow: hidden;
+}
+/*pagination end */
+
+.mr-top{
+  margin-top: -5px;
+}
+.active_div{
+  background-color: #cdafd2;
+}
+.btn-xs {padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.pending{
+  color: red;
+  font-weight: bold;
+}
+.complete{
+  color: orange;
+  font-weight: bold;
+}
+.delivered{
+  color: green;
+  font-weight: bold;
+}
+.bg_pending{
+  background-color: red !important;
+}
+.bg_complete{
+  background-color: orange !important;
+}
+.bg_delivered{
+  background-color: green !important;
+}
+.bg_done{
+  width: 83px;
+}
+.mr-top-20{
+  margin-top: 20px;
+}
+.adv_amt{
+  color: green;
+  font-weight: bold;
+}
+.due_amt{
+  color: red;
+  font-weight: bold;
+}
+.zero_bal{
+  color: #999999;
+  font-weight: bold;
+}
+.wdth{
+  width: 100% !important;
+}
+.count_record{
+  margin-top: -20px;
+  float: right;
+  font-size: 20px;
+}
+.total_row{
+  background-color: #9e4fb0;
+  color: #fff;
+  font-size: 18px;
+}
+.mr-top-15{
+    margin-top: 15px;
+}
+.black{
+  color: #9c27b0 !important;
+  font-size: 20px;
+}
+.pay{
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.payment_pending{
+  background-color: #ff0000d9;
+  font-weight: 600;
+  margin-top: 13px;
+}
+.min-height-table{
+  min-height: 500px;
+}
+.foo-ter{
+  background-color: #a552b8;
+  color: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+.user-email{
+  font-size: 20px;
+  color: #fff;
+}
+.pending_balance{
+  background-color: bisque;
+}
+.no_dues_balance{
+  background-color: #82d2bc;
+}
+.nav-space{
+  padding: 10px;
+  color: white;
+}

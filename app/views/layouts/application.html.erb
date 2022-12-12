@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Premium 3</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap-editable/css/bootstrap-editable.css">
+  </head>
+
+  
+  <body class="offline-doc">
+    <div class="wrapper">
+        <%= render 'layouts/sidenavbar' %>
+        <%= yield %>
+    </div>   
+  </body>
+</html>
+<!-- ====Modal popup====== -->
+
+<div id="new_organization" class="modal fade" role="dialog"></div>
+<div id="org_edit" class="modal fade" role="dialog"></div>
+<div id="reminder_sms" class="modal fade" role="dialog"></div> 
+<div id="edit_vendor_amount" class="modal fade" role="dialog"></div>

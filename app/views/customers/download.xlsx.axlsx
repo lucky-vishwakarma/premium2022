@@ -1,0 +1,12 @@
+
+
+@wb = xlsx_package.workbook
+@customers.each do |user|
+  @wb.add_worksheet(name: user.name) do |sheet|
+    sheet.add_row ["First Name", "Phone"]
+    sheet.add_row [user.name, user.phone]
+
+
+    sheet.column_widths 10, nil, nil, nil
+  end
+end

@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+  host: localhost
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: premium_19_feb_development
+test:
+  <<: *default
+  database: premium_19_feb_test
+
+production:
+  <<: *default
+  database: premium_19_feb_production

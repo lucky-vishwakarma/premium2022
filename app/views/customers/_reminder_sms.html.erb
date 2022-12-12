@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"><strong><%= "To: #{@customer.name} (#{@customer.phone})"%></strong></h4>
+    </div>
+    <div class="modal-body">
+     <%= form_tag send_reminder_sms_customer_path(@customer, page: params[:page]), method: :post  do %>
+        <%= label_tag :message %>
+        <%= text_area_tag :message,"", cols: 25, rows: 5, required: true, class: "form-control" %><br>    
+        <%= submit_tag "SEND", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

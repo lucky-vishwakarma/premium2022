@@ -1,0 +1,20 @@
+<%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <label class="width-100">Shop</label>
+        <%= f.select :billings_organization_id_eq, options_from_collection_for_select(@organizations, "id", "name"),  {:prompt => 'Select Shop'}, {:class => 'form-control mr-top'} %>
+    </div>
+    <div class="col-md-2">
+      <label>Phone/Name</label>
+      <%= f.search_field :phone_or_name_eq, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-2">
+      <!-- <button class="send_sms btn btn-primary">Download Xls</button> -->
+      <!-- <button class="send_sms btn btn-primary">Download Xls</button> -->
+      <%= link_to "download", "#", class: "send_sms btn btn-primary"%>
+    </div>
+  </div>
+<% end %>

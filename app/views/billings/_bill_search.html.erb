@@ -1,0 +1,32 @@
+ <%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <label class="bmd-label-floating">Billing Date</label>
+      <%= f.date_field :booking_date_eq, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <label class="bmd-label-floating">Service</label>
+      <%= f.select :carts_service_id_eq, options_from_collection_for_select(Service.all, "id", "name", @q.carts_service_id_eq),  {:prompt => 'Select Service'}, {:class => 'form-control mr-top'} %>
+    </div>
+    <div class="col-md-2">
+      <label class="bmd-label-floating">Delivery Date</label>
+      <%= f.date_field :due_date_eq, class: "form-control" %>
+    </div>
+    <div class="col-md-1">
+      <label>Status</label>
+      <%= f.select :status_eq, options_for_select([ "pending", "complete", "delivered" ], @q.status_eq),  {:prompt => 'Select'}, {:class => 'form-control mr-top'} %>
+      
+    </div>
+    <div class="col-md-1">
+      <label>Bill no.</label>
+      <%= f.search_field :bill_no_eq, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <label>Phone/Name</label>
+      <%= f.search_field :customer_phone_or_customer_name_eq, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

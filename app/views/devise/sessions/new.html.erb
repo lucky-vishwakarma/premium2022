@@ -1,0 +1,60 @@
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <div class="container-fluid">
+      <div class="navbar-wrapper" style="font-size: 32px;">
+        <a href="/" style="color: white;">PremiumDryCleaners</a>
+      </div>
+      
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav" style="font-size: 28px;">
+          <li class="nav-item">
+          <%= link_to "Login", new_user_session_path,  class: "nav-space" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="page-header clear-filter">
+    <div class="page-header-image" style="background-image: url('/assets/cover1.jpg');"></div>
+    <div class="content-center">
+        <div class="row">
+          <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">LOGIN</h4>
+                  <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="row">                      
+                      <div class="col-md-12">
+                        <div class="form-group mr-20">
+                          <label class="">Email</label>
+                          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group mr-20">
+                          <label class="">Password</label>
+                          <%= f.password_field :password, class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <%= f.submit "LOGIN", class: "btn btn-primary mr-top-40" %>
+                    <div class="clearfix"></div>
+                  <% end %>
+                  <%#= render "devise/shared/links" %>
+                  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">             
+            </div>
+          </div>
+    </div>
+  </div>

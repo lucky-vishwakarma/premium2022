@@ -1,0 +1,123 @@
+    <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+        <div class="content">
+            <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">New Billing</h4>
+                </div>
+                <div class="card-body">
+                  <%= nested_form_for @billing do |f| %>
+                    <div class="row mr-top-15">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="">SHOP</label>
+                            <%= f.select :organization_id, options_from_collection_for_select(@organizations, "id", "name"),  {:prompt => 'Select Shop'}, {:class => 'form-control mr-top',:onchange => 'get_bill_no(this.value);', required: true} %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <%= f.hidden_field :booking_date, :value => get_booking_date(@billing) %>
+                          <label class="">Bill No.</label>
+                          <%= f.number_field :bill_no, :value => @billing.bill_no, class: "form-control", :readonly=>true %>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="">Delivery Date</label>
+                          <%= f.date_field :due_date, required: true, class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mr-top-15">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="">Customer Name</label>
+                          <%= text_field_tag :name, @billing.get_name,required: true, class: "form-control" %>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="">Contact No.</label>
+                          <%= number_field_tag :phone, @billing.get_phone, required: true, class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                        <%= f.fields_for :carts do |task_form| %>
+                        <div class="row mr-top-15">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                  <label class="">Item</label>
+                                  <%= task_form.select :item_id, options_from_collection_for_select(Item.all, "id", "name", task_form.object.item_id),  {:prompt => 'Select Items'}, {:class => 'form-control mr-top'} %>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                  <label class="">Quantity</label>
+                                  <%= task_form.number_field :quantity, class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                  <label class="">Amount</label>
+                                  <%= task_form.number_field :amount,  class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                  <label class="">Service</label>
+                                  <%= task_form.select :service_id, options_from_collection_for_select(Service.all, "id", "name", task_form.object.service_id),  {:prompt => 'Select Service'}, {:class => 'form-control mr-top'} %>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                  <label class="">Remark</label>
+                                  <%= task_form.text_field :remark, class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <%= task_form.link_to_remove "Remove Cart" %>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>                        
+                    <div id="carts"></div>
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2"><%= f.link_to_add "Add to cart", :carts, :data => { :target => "#carts" }, class: "btn btn-primary pull-left" %></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div><%= submit_tag submit_tag_title(@billing) , class: "btn btn-primary" %></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+        </div>
+
+<script type="text/javascript">
+    function get_bill_no(shop_id){
+        $.ajax({
+            url: "/billings/get_bill_no",
+            type: "GET",
+            dataType: "json",
+            data: {shop_id: shop_id},
+            success: function(data){
+                 $("#billing_bill_no").val(data.bill_no);
+              }
+          });
+    }
+
+</script>
+
+
+
+

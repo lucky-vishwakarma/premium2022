@@ -1,0 +1,55 @@
+   <div class="main-panel">
+      <%= render 'layouts/top_navbar'%>
+      <div class="content">
+        <div class="container-fluid">
+        
+            <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Billings History</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive min-height-table">
+                    <table class="table">
+                      <thead class=" text-primary">                                    
+                        <tr>
+                          <th>Months</th>
+                          <th>Total Billings</th>
+                          <th>Pending</th>
+                          <th>Complete</th>                   
+                          <th>Delivery</th>                          
+                          <th>Action</th>           
+                        </tr>
+                      </thead>
+                      <% @records.each do |year| %>
+                        <%if year.present? %>
+                           <% year[1].each do |month| %>
+                            <% @billings = month[0].values[0] %>
+                              <tbody>
+                                <td><%= year[0] %> -  <%= "#{month[0].keys[0]}" %></td>
+                                <td><%=  @billings.count %></td>
+                                <td><%=  @billings.pending.count%></td>
+                                <td><%=  @billings.complete.count%></td>
+                                <td><%=  @billings.delivered.count %></td>
+                                <td><%= link_to "Delete", "/csvs/destroy/#{year[0]}/#{month[0].keys[0]}", class: "btn btn-primary btn-xs"%>
+                                    <%= link_to "Download", "/csvs/download/#{year[0]}/#{month[0].keys[0]}.csv", class: "btn btn-primary btn-xs"%></td>
+                              </tbody>
+                           <% end %>
+                        <% end %>
+                      <% end %>
+                            
+                      
+                    </table>
+                    <div class="digg_pagination">
+                      <%#= will_paginate @vendor_billing_items, :container => false %>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>         
+          </div>
+        </div>
+      </div>
+    </div>

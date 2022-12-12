@@ -1,0 +1,52 @@
+
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image=/assets/sidebar-1.jpg">
+
+      <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Creative Tim
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item <%= is_active_controller?('billings', ['index']) %>">
+            <a class="nav-link" href="/billings">
+              <p>Billings</p>
+            </a>
+          </li>
+          <li class="nav-item <%= is_active_controller?('billings', ['new','show', 'edit']) %>">
+            <a class="nav-link" href="/billings/new">
+              <p> New Billings</p>
+            </a>
+          </li>   
+            
+          <li class="nav-item <%= is_active_controller?('customers', ['index']) %>">
+            <a class="nav-link" href="/customers">
+              <p>Customer</p>
+            </a>
+          </li>
+          <% if current_user.admin? %>
+         
+          <li class="nav-item <%= is_active_controller?('csvs', ['index']) %>">
+            <a class="nav-link " href="/csvs">
+              <p>CSV</p>
+            </a>
+          </li>
+          <% end %>
+          <li class="nav-item <%= is_active_controller?('extra', ['index']) %>">
+            <a class="nav-link " href="/extra">
+              <p>Extra</p>
+            </a>
+          </li>
+          <li class="nav-item active-pro ">
+            <%= link_to "LOGOUT", destroy_user_session_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(".nav-item").click(function(){
+        $(".nav-item").removeClass("active");
+        $(this).addClass("active");
+      })
+    </script>

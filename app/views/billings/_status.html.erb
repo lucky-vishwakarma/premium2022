@@ -1,0 +1,7 @@
+<% if status == "delivered" %>
+	<%= link_to status.titleize, delevery_billing_path(billing, status: status, page: page), method: :put, remote: true, class: "#{status} btn btn-primary btn-xs bg_#{status}" %>
+<% else %>	
+	<%= link_to status.titleize, update_status_billing_path(billing, status: status, page: page), method: :put, class: "#{status} btn btn-primary btn-xs bg_#{status}" %>
+<% end %>
+
+

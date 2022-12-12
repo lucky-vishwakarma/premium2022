@@ -1,0 +1,16 @@
+<% flash.each do |key, value| %>
+  <div class="flash flash-<%= key %>"><%= value %></div>
+<% end %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.flash').fadeOut(10000);
+	});
+</script>
+<style type="text/css">
+	.flash-success{
+		color: #fff;
+	}
+	.flash-danger{
+		color: #ec4d22;
+	}
+</style>

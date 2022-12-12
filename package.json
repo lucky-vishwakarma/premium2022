@@ -1,0 +1,9 @@
+{
+  "name": "premium2",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.39.2",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
