@@ -9,11 +9,11 @@ default: &default
 
 development:
   <<: *default
-  database: premium_19_feb_development
+  database: premium_2024_development
 test:
   <<: *default
-  database: premium_19_feb_test
+  database: premium_2024_test
 
 production:
   <<: *default
-  database: premium_19_feb_production
+  database: premium_2024_production
